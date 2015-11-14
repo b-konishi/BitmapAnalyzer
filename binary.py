@@ -5,7 +5,7 @@
 import binascii as bin
 import sys
 
-FILE_NAME = '100.bmp'
+FILE_NAME = './character/1.bmp'
 FILE_NAME = sys.argv[1] if len(sys.argv) == 2 else FILE_NAME
 print(FILE_NAME)
 
@@ -60,11 +60,12 @@ for i in range(paletteAddress, paletteAddress+((bfWidthData*2+padding)*bfHeightD
 palette.reverse()
 palette = ''.join(palette)
 bitData = ''
+# Write ascii charcter '0' or '1'
 for i in range(0, bfWidthData*bfHeightData):
     if palette[i*2] == '0':
-        bitData += '0'
+        bitData += chr(1)
     else:
-        bitData += '1'
+        bitData += chr(0)
 bitData = bitData.strip()
 print('Data: ' + str(bitData))
 file = open('data', 'w')
